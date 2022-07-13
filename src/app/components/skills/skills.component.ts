@@ -15,7 +15,10 @@ export class SkillsComponent implements OnInit {
   skills: Skill[] = [];
   types: string[] = [];
   selectedType: string = '';
-  defaultSkillsResponse: Skill[] = isDevMode() ? skillsFakeApiData : [];
+
+  // Remember to uncomment following lines to make it work with normal api client
+  // defaultSkillsResponse: Skill[] = isDevMode() ? skillsFakeApiData : [];
+  defaultSkillsResponse: Skill[] = skillsFakeApiData;
 
   constructor(
     private progressBarService: ProgressBarService,
