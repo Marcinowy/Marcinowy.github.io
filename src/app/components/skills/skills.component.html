@@ -1,0 +1,26 @@
+
+<h1 class="mt-4 mb-2 text-center">Skills</h1>
+
+<div class="text-center">
+  <button
+    *ngFor="let type of types"
+    mat-flat-button
+    [color]="selectedType == type ? 'basic' : 'primary'"
+    class="mx-1"
+    (click)="selectedType = type"
+  >
+    {{ type }}
+  </button>
+</div>
+
+<div class="d-flex justify-content-center flex-wrap">
+  <ng-container *ngFor="let skill of skills">
+    <app-skill-item *ngIf="skill.type == selectedType" [skill]="skill"></app-skill-item>
+  </ng-container>
+</div>
+<p>
+  I am also happy to learn new technologies and languages.
+</p>
+<p>
+  Ah, and I don't only have hard skills. My other skills: Cooperative, Creative, Teamwork, Positive Attitude and few other things ;)
+</p>

@@ -1,0 +1,6 @@
+<div class="gauge">
+  <div class="background"></div>
+  <div class="foreground" [ngStyle]="{ 'transform': getTransform(value), 'border-color': color }"></div>
+  <div class="data"><h1>{{ valueDisplay }}</h1></div>
+</div>
+<div class="text">{{ text }}</div>

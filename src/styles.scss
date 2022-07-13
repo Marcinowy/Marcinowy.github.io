@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+@use './custom-styles' as styles;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import '~bootstrap/scss/bootstrap';
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+$primary-light: mat-palette($mat-yellow);
+$accent-light:  mat-palette($mat-pink, A200, A100, A400);
+$light-theme: mat-light-theme($primary-light, $accent-light);
+$primary-dark: mat-palette($mat-purple);
+$accent-dark:  mat-palette($mat-green, A200, A100, A400);
+$dark-theme: mat-dark-theme($primary-dark, $accent-dark);
+
+@mixin theme($theme) {
+  @include angular-material-theme($theme);
+  @include styles.theme($theme);
+}
+
+@include theme($light-theme);
+
+@import url(http://fonts.googleapis.com/css?family=Didact+Gothic);
+@font-face {
+  font-family: Adam normal;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Adam normal"), url(/assets/Adam.woff) format("woff");
+}

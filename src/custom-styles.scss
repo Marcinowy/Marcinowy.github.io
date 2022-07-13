@@ -1,0 +1,41 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  .background-primary {
+    background-color: mat.get-color-from-palette(map.get($color-config, primary));
+  }
+  .background-accent {
+    background-color: mat.get-color-from-palette(map.get($color-config, accent));
+  }
+  .background-warn {
+    background-color: mat.get-color-from-palette(map.get($color-config, warn));
+  }
+  .background-foreground-off {
+    background-color: mat.get-color-from-palette(map.get($color-config, foreground), slider-off);
+  }
+  .text-default {
+    color: mat.get-color-from-palette(map.get($color-config, foreground), text);
+  }
+  .input-text-default {
+    input {
+      color: mat.get-color-from-palette(map.get($color-config, foreground), text);
+    }
+  }
+  .mm-slider-container {
+    &:hover {
+      .background-foreground-off {
+        background-color: mat.get-color-from-palette(map.get($color-config, foreground), slider-off-active);
+      }
+    }
+  }
+}
+
+.dark-theme {
+  .gauge {
+    .background {
+      border-color: rgba(255,255,255,.2)!important;
+    }
+  }
+}

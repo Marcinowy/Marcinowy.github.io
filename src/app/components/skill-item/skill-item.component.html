@@ -1,0 +1,20 @@
+<mat-card *ngIf="skill">
+    <mat-card-title>{{ skill.name }}</mat-card-title>
+  <div class="image-wrapper">
+    <img mat-card-image [src]="'/assets/images/' + skill.image">
+  </div>
+  <mat-card-content>
+    <ng-container *ngIf="!skill.description">
+
+      <div *ngIf="skill.expTime < 12" class="my-4">Exp time: {{ skill.expTime }} months</div>
+      <div *ngIf="skill.expTime >= 12" class="my-4">Exp time: {{ skill.expTime / 12 }} years</div>
+      <app-gauge
+        [value]="skill.knowledge"
+        [valueDisplay]="skill.knowledge * 100 + '%'"
+        text="Knowledge"
+      ></app-gauge>
+
+    </ng-container>
+    <p *ngIf="skill.description" class="description mt-4">{{ skill.description }}</p>
+  </mat-card-content>
+</mat-card>

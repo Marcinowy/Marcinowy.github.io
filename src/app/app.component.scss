@@ -1,0 +1,17 @@
+#app {
+  // font-family: Adam normal;
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 15px;
+}
+
+
+.outlet {
+  position: relative;
+  background-color: #283036;
+  color: #fff;
+
+  mat-progress-bar {
+    position: absolute;
+    z-index: 6;
+  }
+}
