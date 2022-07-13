@@ -22,6 +22,11 @@ export class GaugeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    let tempValue: number = this.value;
+    this.value = 0;
+    setTimeout(() => {
+      this.value = tempValue;
+    }, 0);
   }
 
   getTransform(value: number): string {
