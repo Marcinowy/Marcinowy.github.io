@@ -22,13 +22,15 @@ export class GaugeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    let tempValue: number = this.value;
+    // Enable css animation
+    const realValue = this.value;
     this.value = 0;
     setTimeout(() => {
-      this.value = tempValue;
+      this.value = realValue;
     }, 0);
   }
 
+  // Calculate rotation degrees
   getTransform(value: number): string {
     if (value < 0) value = 0;
     if (value > 1) value = 1;

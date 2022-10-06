@@ -5,7 +5,9 @@
   position: relative;
   overflow: hidden;
   text-align: center;
-  .background, .foreground {
+
+  .background,
+  .foreground {
     position: absolute;
     left: 0;
     top: 0;
@@ -17,9 +19,10 @@
     border-bottom: 0;
     box-sizing: border-box;
   }
+
   .background {
     z-index: 1;
-    border-color: rgba(0,0,0,.2);
+    border-color: rgba(0, 0, 0, .2);
   }
 
   .foreground {
@@ -37,6 +40,7 @@
     height: 50%;
     line-height: 50%;
     text-align: center;
+
     h1 {
       z-index: 4;
       font-weight: 700;
@@ -44,6 +48,7 @@
     }
   }
 }
+
 .text {
   text-align: center;
   font-size: 1rem;

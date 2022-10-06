@@ -11,18 +11,24 @@ export class ProgressBarService {
 
   constructor() { }
 
+  /**
+   * Updates progress bar visibility. If there is more than one update, the service count all updates
+   *
+   * @param {boolean} status - true: show progress bar, false: hide progress bar
+   */
   setBarVisibility(status: boolean): void {
-    if (status) {
-      this.visibilityCount++;
-    } else {
-      this.visibilityCount--;
-      if (this.visibilityCount < 0) {
-        this.visibilityCount = 0;
-      }
-    }
+    // calculate requests count
+    this.visibilityCount += status ? 1 : -1;
+
+    // emit changes
     this.barVisibilitySubject.next(this.visibilityCount > 0);
   }
 
+  /**
+   * Returns bar visibility as Observable object
+   *
+   * @returns {Observable<boolean>} Bar visibility as Observable object
+   */
   getBarVisibility(): Observable<boolean> {
     return this.barVisibilitySubject.asObservable();
   }

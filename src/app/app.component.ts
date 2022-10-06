@@ -14,6 +14,7 @@ export class AppComponent {
     private progressBarService: ProgressBarService,
   ) {
     this.progressBarService.getBarVisibility().subscribe((data) => {
+      // This allows ChangeDetector to detect changes without calling detectChanges()
       Promise.resolve().then(() => this.barVisibile = data);
     });
   }

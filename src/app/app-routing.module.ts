@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SkillsComponent } from './components/skills/skills.component';
 
 const routes: Routes = [
+  // redirect default path to homa path
   { path: '', pathMatch: 'full', redirectTo: '/home' },
   {
     path: 'home',

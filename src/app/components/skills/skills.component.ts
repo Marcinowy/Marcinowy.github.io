@@ -16,32 +16,40 @@ export class SkillsComponent implements OnInit {
   types: string[] = [];
   selectedType: string = '';
 
-  // Remember to uncomment following lines to make it work with normal api client
-  // defaultSkillsResponse: Skill[] = isDevMode() ? skillsFakeApiData : [];
-  defaultSkillsResponse: Skill[] = skillsFakeApiData;
+  // Remember to edit following line to make it work with normal api client
+  defaultSkillsResponse: Skill[] = isDevMode() ? skillsFakeApiData : skillsFakeApiData;
 
   constructor(
     private progressBarService: ProgressBarService,
     private messageService: MessageService,
     private restClientService: RestClientService,
   ) {
-    this.loadData();
   }
 
   ngOnInit(): void {
+    this.loadData();
   }
 
   private async loadData(): Promise<void> {
     this.progressBarService.setBarVisibility(true);
     try {
-      this.skills = await this.restClientService.apiCall('/skills', 'get', this.defaultSkillsResponse);
-      this.types = this.skills.map(e => e.type).filter((v, i, s) => s.indexOf(v) === i);
+      this.skills = await this.restClientService.fakeApiCall('/skills', 'get', this.defaultSkillsResponse);
+      this.types = this.getTypes(this.skills);
+
+      // select first skill type
       this.selectedType = this.types[0];
     } catch (error: any) {
       this.messageService.pushMessage('Something went wrong');
     } finally {
       this.progressBarService.setBarVisibility(false);
     }
+  }
+
+  private getTypes(skills: Skill[]): string[] {
+    const types = skills.map(e => e.type);
+
+    // get only unique types of skills
+    return types.filter((v, i, s) => s.indexOf(v) === i);
   }
 
 }

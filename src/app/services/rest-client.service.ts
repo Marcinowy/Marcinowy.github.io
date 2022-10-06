@@ -12,7 +12,16 @@ export class RestClientService {
     private progressBarService: ProgressBarService,
   ) { }
 
-  async apiCall<T>(
+  /**
+   * Performs fake API call and return provided value as Promise
+   *
+   * @param {string} path - Not used in fake call
+   * @param {'get' | 'post' | 'delete' | 'put'} method - Not used in fake call
+   * @param {T} defaultValue - Value to be returned as Promise
+   * @param {any} body - Not used in fake call
+   * @returns {Promise<T>} The value provided in defaultValue argument
+   */
+  async fakeApiCall<T>(
     path: string,
     method: 'get' | 'post' | 'delete' | 'put' = 'get',
     defaultValue: T,
@@ -20,14 +29,20 @@ export class RestClientService {
   ): Promise<T> {
     this.progressBarService.setBarVisibility(true);
 
-    let request$ = this.fakeApiCall<T>(defaultValue);
+    const request$ = this.fakeDelay<T>(defaultValue);
 
-    let response = await firstValueFrom(request$);
+    const response = await firstValueFrom(request$);
     this.progressBarService.setBarVisibility(false);
     return response;
   }
 
-  private fakeApiCall<T>(fakeResponse: T): Observable<T> {
+  /**
+   * Simulate delay when getting data from server
+   *
+   * @param {T} fakeResponse - Value to be returned as Observable
+   * @returns {Observable<T>} The value provided in fakeResponse argument
+   */
+  private fakeDelay<T>(fakeResponse: T): Observable<T> {
     let fakeRequest$ = new Subject<T>();
     setTimeout(() => {
       fakeRequest$.next(fakeResponse);

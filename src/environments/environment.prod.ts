@@ -128,7 +128,7 @@ export const skillsFakeApiData: Skill[] = [
     name: 'JIRA',
     image: 'jira.png',
     expTime: 2,
-    knowledge: 0.5,
+    knowledge: 0.4,
     type: 'Others',
   },
   {
