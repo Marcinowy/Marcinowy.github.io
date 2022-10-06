@@ -1,6 +1,8 @@
 mat-card {
   width: 265px;
   padding: 14px 1.8rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .image-wrapper {
@@ -26,6 +28,7 @@ mat-card-title {
 mat-card-content {
   text-align: center;
   font-size: 1.2rem;
+  flex-grow: 1;
 }
 
 .description {
