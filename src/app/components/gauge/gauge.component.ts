@@ -19,15 +19,15 @@ export class GaugeComponent implements OnInit {
   @Input()
   color: string = '#5664F9';
 
+  animatedValue: number = 0;
+
   constructor() { }
 
   ngOnInit(): void {
     // Enable css animation
-    const realValue = this.value;
-    this.value = 0;
     setTimeout(() => {
-      this.value = realValue;
-    }, 0);
+      this.animatedValue = this.value;
+    }, 100);
   }
 
   // Calculate rotation degrees
