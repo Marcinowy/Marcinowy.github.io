@@ -34,7 +34,7 @@ export class GaugeComponent implements OnInit {
   getTransform(value: number): string {
     if (value < 0) value = 0;
     if (value > 1) value = 1;
-    let deg = 180 * value - 180;
+    const deg = 180 * value - 180;
     return `rotate(${deg}deg)`;
   }
 

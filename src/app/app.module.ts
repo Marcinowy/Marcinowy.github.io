@@ -17,6 +17,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { SkillItemComponent } from './components/skill-item/skill-item.component';
 import { GaugeComponent } from './components/gauge/gauge.component';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,8 @@ import { GaugeComponent } from './components/gauge/gauge.component';
     MatCardModule,
     MatIconModule,
     NgbModule,
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,7 +7,7 @@
     mat-flat-button
     [color]="selectedType == type ? 'basic' : 'primary'"
     class="mx-1"
-    (click)="selectedType = type"
+    (click)="changeType(type)"
   >
     {{ type }}
   </button>

@@ -21,6 +21,20 @@ $dark-theme: mat-dark-theme($primary-dark, $accent-dark);
   @include styles.theme($theme);
 }
 
+@mixin snackbar($theme) {
+  $warn: mat-color(map-get($theme, warn));
+  $warn-text: mat-color(map-get($theme, warn), default-contrast);
+
+  .style-error {
+    color: $warn-text;
+    background-color: $warn;
+  }
+  .style-error .mat-simple-snackbar-action {
+    color: $warn-text;
+  }
+}
+
 @include theme($light-theme);
+@include snackbar($dark-theme);
 
 @import url(https://fonts.googleapis.com/css?family=Didact+Gothic|Architects+Daughter);
