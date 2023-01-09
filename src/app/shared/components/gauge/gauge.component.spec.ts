@@ -8,12 +8,10 @@ describe('GaugeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GaugeComponent ]
+      imports: [ GaugeComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(GaugeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

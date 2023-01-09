@@ -1,32 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ContactComponent } from './components/contact/contact.component';
-import { HomeComponent } from './components/home/home.component';
-import { SkillsComponent } from './components/skills/skills.component';
 
 const routes: Routes = [
-  // redirect default path to homa path
+  // redirect default path to home path
   { path: '', pathMatch: 'full', redirectTo: '/home' },
   {
     path: 'home',
-    component: HomeComponent,
-    data: {
-      title: 'Home'
-    }
+    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
   },
   {
     path: 'skills',
-    component: SkillsComponent,
-    data: {
-      title: 'Skills'
-    }
+    loadChildren: () => import('./modules/skills/skills.module').then(m => m.SkillsModule)
   },
   {
     path: 'contact',
-    component: ContactComponent,
-    data: {
-      title: 'Contact'
-    }
+    loadChildren: () => import('./modules/contact/contact.module').then(m => m.ContactModule)
   },
 ];
 

@@ -10,7 +10,7 @@ import { firstValueFrom } from 'rxjs'
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.scss']
 })
-export class SkillsComponent implements OnInit {
+export class SkillsComponent {
 
   skills: Skill[] = [];
   types: string[] = [];
@@ -21,9 +21,6 @@ export class SkillsComponent implements OnInit {
     private messageService: MessageService,
     private skillService: SkillService,
   ) {
-  }
-
-  ngOnInit(): void {
     this.loadTypes();
   }
 

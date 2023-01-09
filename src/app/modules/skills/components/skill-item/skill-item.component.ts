@@ -6,14 +6,11 @@ import { Skill } from 'src/app/models/skill';
   templateUrl: './skill-item.component.html',
   styleUrls: ['./skill-item.component.scss']
 })
-export class SkillItemComponent implements OnInit {
+export class SkillItemComponent {
 
   @Input()
   skill: Skill | null = null;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

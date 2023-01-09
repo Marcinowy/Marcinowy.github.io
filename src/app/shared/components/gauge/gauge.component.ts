@@ -1,11 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-gauge',
+  standalone: true,
+  imports: [NgStyle],
   templateUrl: './gauge.component.html',
   styleUrls: ['./gauge.component.scss']
 })
-export class GaugeComponent implements OnInit {
+export class GaugeComponent {
 
   @Input()
   value: number = 0;
@@ -31,7 +34,7 @@ export class GaugeComponent implements OnInit {
   }
 
   // Calculate rotation degrees
-  getTransform(value: number): string {
+  protected getTransform(value: number): string {
     if (value < 0) value = 0;
     if (value > 1) value = 1;
     const deg = 180 * value - 180;
