@@ -5,7 +5,7 @@
   <button
     *ngFor="let type of types"
     mat-flat-button
-    [color]="selectedType == type ? 'basic' : 'primary'"
+    [color]="selectedType == type ? '' : 'accent'"
     class="mx-1"
     (click)="changeType(type)"
   >
