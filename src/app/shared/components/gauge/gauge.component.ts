@@ -31,7 +31,7 @@ export class GaugeComponent {
   constructor() {
     this.transformValue$ = this.valueSubject.pipe(
       // Enable css animation
-      delay(10),
+      delay(100),
       map((val: number) => this.getTransform(val))
     );
   }

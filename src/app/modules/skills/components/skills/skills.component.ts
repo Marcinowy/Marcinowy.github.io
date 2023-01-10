@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Skill } from 'src/app/models/skill';
+import { Skill } from 'src/app/modules/skills/models/skill';
 import { SkillService } from 'src/app/services/skill.service';
 import { firstValueFrom, Observable, tap } from 'rxjs';
 

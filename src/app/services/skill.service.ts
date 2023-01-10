@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Firestore, collectionData, collection, query, where, orderBy } from '@angular/fire/firestore';
 import { Query } from 'rxfire/firestore/interfaces';
 import { catchError, Observable, map, of, tap, take } from 'rxjs';
-import { Skill } from '../models/skill';
-import { SkillType } from '../models/skillType';
+import { Skill } from '../modules/skills/models/skill';
+import { SkillType } from '../modules/skills/models/skillType';
 import { MessageService } from './message.service';
 import { ProgressBarService } from './progress-bar.service';
 
