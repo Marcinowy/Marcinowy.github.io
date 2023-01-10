@@ -3,12 +3,11 @@
 
 <div class="text-center">
   <button
-    *ngFor="let type of types"
+    *ngFor="let type of types$ | async"
     mat-flat-button
     [color]="selectedType == type ? '' : 'accent'"
     class="mx-1"
-    (click)="changeType(type)"
-  >
+    (click)="changeType(type)">
     {{ type }}
   </button>
 </div>

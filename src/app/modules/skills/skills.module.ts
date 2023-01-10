@@ -5,7 +5,7 @@ import { SkillItemComponent } from './components/skill-item/skill-item.component
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { GaugeComponent } from 'src/app/shared/components/gauge/gauge.component';
-import { NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 
 
 @NgModule({
@@ -16,6 +16,7 @@ import { NgFor, NgIf } from '@angular/common';
   imports: [
     NgIf,
     NgFor,
+    AsyncPipe,
     SkillsRoutingModule,
     MatButtonModule,
     MatCardModule,

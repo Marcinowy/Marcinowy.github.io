@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Skill } from 'src/app/models/skill';
-import { MessageService } from 'src/app/services/message.service';
-import { ProgressBarService } from 'src/app/services/progress-bar.service';
 import { SkillService } from 'src/app/services/skill.service';
-import { firstValueFrom } from 'rxjs'
+import { firstValueFrom, Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-skills',
@@ -12,59 +10,32 @@ import { firstValueFrom } from 'rxjs'
 })
 export class SkillsComponent {
 
-  skills: Skill[] = [];
-  types: string[] = [];
-  selectedType: string = '';
+  protected skills: Skill[] = [];
+  protected selectedType: string = '';
+  protected readonly types$: Observable<string[]>;
 
-  constructor(
-    private progressBarService: ProgressBarService,
-    private messageService: MessageService,
-    private skillService: SkillService,
-  ) {
-    this.loadTypes();
+  constructor(private skillService: SkillService) {
+    this.types$ = this.skillService.getTypes().pipe(
+      tap((types: string[]) => {
+        this.changeType(types[0]);
+      })
+    );
   }
 
-  async changeType(type: string): Promise<void> {
+  changeType(type: string): void {
     this.selectedType = type;
 
     // load skills only one time for each type
     !this.isTypeSkillsLoaded(type) && this.loadSkills(type);
   }
 
-  private async loadTypes(): Promise<void> {
-
-    this.progressBarService.setBarVisibility(true);
-    try {
-      // fetch skill types data
-      const types$ = this.skillService.getTypes();
-      this.types = await firstValueFrom(types$);
-
-      // select first skill type
-      this.changeType(this.types[0]);
-    } catch (error: any) {
-      this.messageService.pushMessage('Something went wrong', false);
-    } finally {
-      this.progressBarService.setBarVisibility(false);
-    }
-
-  }
-
   private async loadSkills(type: string): Promise<void> {
+    // fetch skills data for type
+    const skills$ = this.skillService.getSkills(type);
+    const skills = await firstValueFrom(skills$);
 
-    this.progressBarService.setBarVisibility(true);
-    try {
-      // fetch skills data for type
-      const skills$ = this.skillService.getSkills(type);
-      const skills = await firstValueFrom(skills$);
-
-      // append data to array
-      this.skills = [...this.skills, ...skills];
-    } catch (error: any) {
-      this.messageService.pushMessage('Something went wrong', false);
-    } finally {
-      this.progressBarService.setBarVisibility(false);
-    }
-
+    // append data to array
+    this.skills = [...this.skills, ...skills];
   }
 
   private isTypeSkillsLoaded(type: string): boolean {

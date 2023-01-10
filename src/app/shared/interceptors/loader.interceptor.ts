@@ -3,8 +3,7 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor,
-  HttpResponse
+  HttpInterceptor
 } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { ProgressBarService } from 'src/app/services/progress-bar.service';

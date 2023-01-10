@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { of } from 'rxjs';
+import { firstValueFrom, of } from 'rxjs';
 import { SkillService } from 'src/app/services/skill.service';
 import { Firestore } from '@angular/fire/firestore';
 
@@ -47,17 +47,17 @@ describe('SkillsComponent', () => {
   it('should get types on init', async () => {
     await fixture.whenStable();
     expect(spyGetTypes).toHaveBeenCalledTimes(1);
-    expect(component.types).toEqual(['a', 'b', 'c']);
+    expect(await firstValueFrom(component['types$'])).toEqual(['a', 'b', 'c']);
   });
 
   it('should set type on init', async () => {
     await fixture.whenStable();
-    expect(component.selectedType).not.toBe('');
+    expect(component['selectedType']).not.toBe('');
   });
 
   it('should get skills on init', async () => {
     await fixture.whenStable();
-    expect(component.skills).not.toEqual([]);
+    expect(component['skills']).not.toEqual([]);
   });
 
   it('should get skills on init with type', async () => {
@@ -69,13 +69,13 @@ describe('SkillsComponent', () => {
     await fixture.whenStable();
     component.changeType('c');
     await fixture.whenStable();
-    expect(component.skills.length).toBe(4);
+    expect(component['skills'].length).toBe(4);
   });
 
   it('should not fetch same type again', async () => {
     await fixture.whenStable();
     component.changeType('a');
     await fixture.whenStable();
-    expect(component.skills.length).toBe(2);
+    expect(component['skills'].length).toBe(2);
   });
 });
