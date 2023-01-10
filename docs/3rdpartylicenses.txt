@@ -156,6 +156,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+@ngneat/until-destroy
+MIT
+
 @popperjs/core
 MIT
 The MIT License (MIT)

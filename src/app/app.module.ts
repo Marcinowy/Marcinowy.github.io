@@ -11,6 +11,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
+import { ProgressBarService } from './services/progress-bar.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,14 @@ import { environment } from 'src/environments/environment';
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [],
+  providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: LoaderInterceptor,
+			multi: true,
+			deps: [ProgressBarService]
+		}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

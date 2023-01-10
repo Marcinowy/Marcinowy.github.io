@@ -4,7 +4,7 @@
 
   <div class="outlet flex-grow-1">
 
-    <mat-progress-bar *ngIf="barVisibile" mode="indeterminate" color="warn"></mat-progress-bar>
+    <mat-progress-bar *ngIf="progressBarVisible$ | async" mode="indeterminate" color="warn"></mat-progress-bar>
 
     <router-outlet></router-outlet>
   </div>
